@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import logo from "./logo.svg";
 import "./App.css";
+import routes from "./routes";
 
 class App extends Component {
   constructor(props) {
@@ -30,6 +31,8 @@ class App extends Component {
           <h1 className="App-title">Mommy Friends Forever</h1>
         </header>
         {this.state.test && <div>I see you from back here!</div>}
+
+        <div> {routes} </div>
       </div>
     );
   }

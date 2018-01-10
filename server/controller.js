@@ -12,23 +12,56 @@ module.exports = {
     const { params } = req;
     console.log(params);
     db
-      .read_user(req.params.id)
+      .getUser(req.params.id)
       .then(user => {
         res.status(200).send(user);
       })
       .catch(console.log);
   },
-  update: (req, res, next) => {
+  updateUser: (req, res, next) => {
     const db = req.app.get("db");
     db
-      .updateProfile([params.id, query.desc])
+      .updateUser([params.id, query.desc])
       .then(() => res.status(200).send())
       .catch(console.log);
   },
-  delete: (req, res, next) => {
+  deleteUser: (req, res, next) => {
     const db = res.app.get("db");
     db
-      .deleteProfile(params.id)
+      .deleteUser(params.id)
+      .then(() => res.status(200).json())
+      .catch(console.log);
+  },
+  createPost: (req, res, next) => {
+    const db = req.app.get("db");
+    const { post } = req.body;
+    db
+      .createPost(post)
+      .then(() => res.status(200).send())
+      .catch(console.log);
+  },
+  getPost: (req, res, next) => {
+    const db = req.app.get("db");
+    const { params } = req;
+
+    db
+      .getPost(req.params.id)
+      .then(post => {
+        res.status(200).send(user);
+      })
+      .catch(console.log);
+  },
+  updatePost: (req, res, next) => {
+    const db = req.app.get("db");
+    db
+      .updatePost([params.id, query.desc])
+      .then(() => res.status(200).send())
+      .catch(console.log);
+  },
+  deletePost: (req, res, next) => {
+    const db = res.app.get("db");
+    db
+      .deletePost(params.id)
       .then(() => res.status(200).json())
       .catch(console.log);
   }
