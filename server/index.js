@@ -7,6 +7,8 @@ const massive = require("massive");
 const passport = require("passport");
 const Auth0Strategy = require("passport-auth0");
 
+const controller = require("./controller");
+
 const app = express();
 
 massive(process.env.CONNECTION_STRING)
@@ -37,7 +39,8 @@ passport.use(
       domain: process.env.AUTH_DOMAIN,
       clientSecret: process.env.CLIENT_SECRET,
       clientID: process.env.CLIENT_ID,
-      callbackURL: "/login"
+      callbackURL: "/login",
+      scope: "openid profile"
     },
     (accessToken, refreshToken, extraParams, profile, done) => {
       return done(null, profile);
@@ -50,13 +53,13 @@ passport.deserializeUser((user, done) => done(null, user));
 app.get(
   "/login",
   passport.authenticate("auth0", {
-    sucessRedirect: "http://localhost:3000/",
+    successRedirect: "http://localhost:3000",
     failureRedirect: "/login"
   })
 );
 
 app.get("/api/me", (req, res, next) => {
-  if (reg.user) res.json(req.user);
+  if (req.user) res.json(req.user);
   else res.redirect("/login");
 });
 
@@ -66,10 +69,16 @@ app.get("/api/test", (req, res, next) => {
   db.users
     .find({})
     .then(response => {
+      console.log(response);
       res.json(response);
     })
     .catch(console.log);
 });
+
+app.post("/api/user", controller.createUser);
+app.get("/api/user/:id", controller.getUser);
+app.put("/api/user/:id", controller.update);
+app.delete("/api/users/:id", controller.delete);
 
 app.listen(process.env.PORT || 3001, () => {
   console.log(`App listening on port ${process.env.PORT || 3001}!`);

@@ -14,10 +14,14 @@ class App extends Component {
 
   componentDidMount() {
     axios
-      .get("/api/test")
-      .then(response => this.setState({ test: response.data }))
+      .get("/api/me")
+      .then(response => {
+        console.log(response);
+        this.setState({ test: response.data });
+      })
       .catch(console.log);
   }
+
   render() {
     return (
       <div className="App">
@@ -25,7 +29,7 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Mommy Friends Forever</h1>
         </header>
-        {this.state.test && <div>{this.state.test}</div>}
+        {this.state.test && <div>I see you from back here!</div>}
       </div>
     );
   }
