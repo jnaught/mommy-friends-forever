@@ -74,10 +74,10 @@ app.get("/api/test", (req, res, next) => {
     .catch(console.log);
 });
 
-// app.post("/api/user", controller.createUser);
-// app.get("/api/user/:id", controller.getUser);
-// app.put("/api/user/:id", controller.update);
-// app.delete("/api/users/:id", controller.delete);
+app.post("/api/user", controller.createUser);
+app.get("/api/user/:id", controller.getUser);
+app.put("/api/user/:id", controller.updateUser);
+app.delete("/api/user/:id", controller.deleteUser);
 
 app.listen(process.env.PORT || 3001, () => {
   console.log(`App listening on port ${process.env.PORT || 3001}!`);
