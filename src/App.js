@@ -24,13 +24,22 @@ class App extends Component {
   }
 
   render() {
+    const user = this.state.test;
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Mommy Friends Forever</h1>
         </header>
-        {this.state.test && <div>I see you from back here!</div>}
+
+        {this.state.test && (
+          <div>
+            <div className="profile-picture">
+              <img src={user.picture} alt="profile" />
+            </div>
+            <div className="profile-name">{user.name.givenName}</div>
+          </div>
+        )}
 
         <div> {routes} </div>
       </div>
