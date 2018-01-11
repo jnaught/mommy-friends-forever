@@ -1,4 +1,4 @@
 INSERT INTO users
-    (firstName , lastName, age, displayName, picture)
+    (firstName,lastname, age,displayname)
 VALUES
-    ($1, $2, $3, $4, $5);
+    ($1, $2, $3, $4);

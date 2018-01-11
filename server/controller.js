@@ -1,9 +1,10 @@
 module.exports = {
   createUser: (req, res, next) => {
     const db = req.app.get("db");
-    const { firstName, lastName, age, displayName } = req.body;
+    const { firstname, lastname, age, displayname } = req.body;
+    console.log(firstname, lastname, age, displayname);
     db
-      .createUser([firstName, lastName, age, displayName])
+      .createUser([firstname, lastname, age, displayname])
       .then(() => res.status(200).send())
       .catch(console.log);
   },
