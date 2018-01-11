@@ -53,7 +53,7 @@ passport.deserializeUser((user, done) => done(null, user));
 app.get(
   "/login",
   passport.authenticate("auth0", {
-    successRedirect: "http://localhost:3000",
+    successRedirect: "http://localhost:3000/Dashboard",
     failureRedirect: "/login"
   })
 );
@@ -63,21 +63,24 @@ app.get("/api/me", (req, res, next) => {
   else res.redirect("/login");
 });
 
-app.get("/api/test", (req, res, next) => {
-  const db = req.app.get("db");
+// app.get("/api/test", (req, res, next) => {
+//   const db = req.app.get("db");
 
-  db.users
-    .find({})
-    .then(response => {
-      res.json(response);
-    })
-    .catch(console.log);
-});
+//   db.users
+//     .find({})
+//     .then(response => {
+//       res.json(response);
+//     })
+//     .catch(console.log);
+// });
 
 app.post("/api/user", controller.createUser);
 app.get("/api/user/:id", controller.getUser);
 app.put("/api/user/:id", controller.updateUser);
 app.delete("/api/user/:id", controller.deleteUser);
+app.post("/api/post", controller.createPost);
+app.get("/api/post/", controller.getPost);
+app.delete("/api/post/:id", controller.deletePost);
 
 app.listen(process.env.PORT || 3001, () => {
   console.log(`App listening on port ${process.env.PORT || 3001}!`);

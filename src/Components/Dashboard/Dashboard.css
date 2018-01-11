@@ -1,0 +1,14 @@
+.dashboard-container {
+  display: flex;
+  justify-content: space-around;
+}
+.dashboard-intro {
+  width: 40vw;
+  height: 10vh;
+}
+
+.post-feed {
+  height: 80vh;
+  width: 60vw;
+  background: white;
+}

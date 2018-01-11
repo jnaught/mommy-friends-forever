@@ -32,38 +32,38 @@ module.exports = {
       .deleteUser(params.id)
       .then(() => res.status(200).json())
       .catch(console.log);
-  }
-  //   , createPost: (req, res, next) => {
-  //     const db = req.app.get("db");
-  //     const { post } = req.body;
-  //     db
-  //       .createPost(post)
-  //       .then(() => res.status(200).send())
-  //       .catch(console.log);
-  //   },
-  //   getPost: (req, res, next) => {
-  //     const db = req.app.get("db");
-  //     const { params } = req;
+  },
+  createPost: (req, res, next) => {
+    const db = req.app.get("db");
+    const { post } = req.body;
+    db
+      .createPost(post)
+      .then(() => res.status(200).send())
+      .catch(console.log);
+  },
+  getPost: (req, res, next) => {
+    const db = req.app.get("db");
+    const { params } = req;
 
-  //     db
-  //       .getPost(req.params.id)
-  //       .then(post => {
-  //         res.status(200).send(user);
-  //       })
-  //       .catch(console.log);
-  //   },
-  //   updatePost: (req, res, next) => {
-  //     const db = req.app.get("db");
-  //     db
-  //       .updatePost([params.id, query.desc])
-  //       .then(() => res.status(200).send())
-  //       .catch(console.log);
-  //   },
-  //   deletePost: (req, res, next) => {
-  //     const db = res.app.get("db");
-  //     db
-  //       .deletePost(params.id)
-  //       .then(() => res.status(200).json())
-  //       .catch(console.log);
-  //   }
+    db
+      .getPost(req.params.id)
+      .then(user => {
+        res.status(200).send(user);
+      })
+      .catch(console.log);
+  },
+  updatePost: (req, res, next) => {
+    const db = req.app.get("db");
+    db
+      .updatePost([params.id, query.desc])
+      .then(() => res.status(200).send())
+      .catch(console.log);
+  },
+  deletePost: (req, res, next) => {
+    const db = res.app.get("db");
+    db
+      .deletePost(params.id)
+      .then(() => res.status(200).json())
+      .catch(console.log);
+  }
 };
