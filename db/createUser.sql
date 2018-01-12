@@ -1,4 +1,6 @@
+
 INSERT INTO users
-    (firstName,lastname, age,displayname)
+    (uid, firstname, lastname, displayname, picture)
 VALUES
-    ($1, $2, $3, $4);
+    ($1, $2, $3, $4, $5)
+RETURNING uid, firstname, lastname, displayname, picture;

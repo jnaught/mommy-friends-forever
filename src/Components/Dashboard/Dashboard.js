@@ -8,7 +8,7 @@ export default class Dashboard extends Component {
     super(props);
 
     this.state = {
-      recentPost: ""
+      recentPost: []
     };
   }
   componentDidMount() {
@@ -16,7 +16,7 @@ export default class Dashboard extends Component {
       .get("/api/post")
       .then(response => {
         console.log(response);
-        this.setState({ recentPost: response });
+        this.setState({ recentPost: response.data });
       })
       .catch(console.log);
   }
@@ -29,17 +29,42 @@ export default class Dashboard extends Component {
   }
   render() {
     const recentPost = this.state.recentPost;
+    let recentPosts = recentPost.map(data => data.blog);
+
     console.log(recentPost);
     return (
       <div className="dashboard-container">
         <div className="dashboard-intro">
           <p> Welcome to your Dashboard</p>
+          <div className="list-container">
+            <ul>
+              <li>
+                {/* ------------------------------User Links!------------------------------------------- */}
+                <a href="#"> Profile </a>
+              </li>
+              <li>
+                {" "}
+                <a href="#"> Your Posts </a>
+              </li>
+              <li>
+                {" "}
+                <a href="#"> new link</a>
+              </li>
+              <li>
+                {" "}
+                <a href="#"> new link </a>
+              </li>
+            </ul>
+          </div>
         </div>
+
+        {/* ------------------------------Recent Post Feed!------------------------------------------- */}
         <div className="post-feed">
           <div className="recent-post">
             <div>
               <div> Recent Posts </div>
-              {recentPost.data && recentPost.data[0].blog}
+              {/* {this.state.recentPost && recentPost.data.pid.blog} */}
+              {recentPosts}
             </div>
           </div>
           <Post />

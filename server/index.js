@@ -43,7 +43,29 @@ passport.use(
       scope: "openid profile"
     },
     (accessToken, refreshToken, extraParams, profile, done) => {
-      return done(null, profile);
+      console.log(profile);
+      app
+        .get("db")
+        .getUser(profile.id)
+        .then(response => {
+          if (!response[0]) {
+            app
+              .get("db")
+              .createUser([
+                profile.id,
+                profile.name.givenName,
+                profile.name.familyName,
+                profile.displayName,
+                profile.picture
+              ])
+              .then(create => {
+                return done(null, profile);
+              });
+          } else {
+            return done(null, response[0]);
+          }
+        });
+      // return done(null, profile);
     }
   )
 );
@@ -54,7 +76,7 @@ app.get(
   "/login",
   passport.authenticate("auth0", {
     successRedirect: "http://localhost:3000/Dashboard",
-    failureRedirect: "/login"
+    failureRedirect: "http://localhost:3000/login"
   })
 );
 
@@ -62,17 +84,6 @@ app.get("/api/me", (req, res, next) => {
   if (req.user) res.json(req.user);
   else res.redirect("/login");
 });
-
-// app.get("/api/test", (req, res, next) => {
-//   const db = req.app.get("db");
-
-//   db.users
-//     .find({})
-//     .then(response => {
-//       res.json(response);
-//     })
-//     .catch(console.log);
-// });
 
 app.post("/api/user", controller.createUser);
 app.get("/api/user/:id", controller.getUser);

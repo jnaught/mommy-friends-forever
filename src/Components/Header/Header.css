@@ -1,6 +1,22 @@
 .header-container {
   background-color: #ff7e13;
-  height: 150px;
+  height: 30px;
+  padding: 20px;
+  color: white;
+}
+.profile-name {
+  background: black;
+  color: #97ff19;
+  height: 30px;
+  width: auto;
+  display: flex;
+  justify-content: flex-start;
+}
+.header-alt-container {
+  display: flex;
+  justify-content: space-around;
+  background-color: #ff7e13;
+  height: 50px;
   padding: 20px;
   color: white;
 }

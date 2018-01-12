@@ -20,3 +20,16 @@
   height: 55vh;
   width: 55vw;
 }
+.list-container {
+  display: flex;
+  margin-left: 20px;
+  background: rgba(128, 128, 128, 0.639);
+  height: 40vh;
+  width: 15vw;
+}
+ul {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  list-style-type: none;
+}
