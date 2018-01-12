@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import "./Dashboard.css";
+import Post from "../Post/Post";
 
 export default class Dashboard extends Component {
   constructor(props) {
@@ -35,7 +36,13 @@ export default class Dashboard extends Component {
           <p> Welcome to your Dashboard</p>
         </div>
         <div className="post-feed">
-          <div> Recent Posts </div> {recentPost.data && recentPost.data[0].post}
+          <div className="recent-post">
+            <div>
+              <div> Recent Posts </div>
+              {recentPost.data && recentPost.data[0].blog}
+            </div>
+          </div>
+          <Post />
         </div>
       </div>
     );

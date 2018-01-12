@@ -8,7 +8,15 @@
 }
 
 .post-feed {
-  height: 80vh;
+  height: 60vh;
   width: 60vw;
   background: white;
+}
+.recent-post {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  background: rgb(255, 178, 120);
+  height: 55vh;
+  width: 55vw;
 }

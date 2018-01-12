@@ -35,15 +35,17 @@ module.exports = {
   },
   createPost: (req, res, next) => {
     const db = req.app.get("db");
-    const { post } = req.body;
+    const { putpost } = req.body;
+    // console.log(req.body);
     db
-      .createPost(post)
+      .createPost(putpost)
       .then(() => res.status(200).send())
       .catch(console.log);
   },
   getPost: (req, res, next) => {
     const db = req.app.get("db");
     const { params } = req;
+    console.log(req.body);
 
     db
       .getPost(req.params.id)
