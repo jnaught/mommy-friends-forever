@@ -1,22 +1,34 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
+
 import "./Dashboard.css";
 import Post from "../Post/Post";
+import Header from "../Header/Header";
 
 export default class Dashboard extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      recentPost: []
+      recentPost: [],
+      user: ""
     };
   }
   componentDidMount() {
     axios
-      .get("/api/post")
+      .get("/api/posts")
       .then(response => {
-        console.log(response);
+        console.log("Blogs: ", response);
         this.setState({ recentPost: response.data });
+      })
+      .catch(console.log);
+
+    axios
+      .get("/api/user/:uid")
+      .then(response => {
+        console.log("user: ", response);
+        this.setState({ user: response.data });
       })
       .catch(console.log);
   }
@@ -28,6 +40,7 @@ export default class Dashboard extends Component {
       .catch(console.log);
   }
   render() {
+    const user = this.state.user;
     const recentPost = this.state.recentPost;
     let recentPosts = recentPost.map(data => data.blog);
 
@@ -40,19 +53,9 @@ export default class Dashboard extends Component {
             <ul>
               <li>
                 {/* ------------------------------User Links!------------------------------------------- */}
-                <a href="#"> Profile </a>
-              </li>
-              <li>
-                {" "}
-                <a href="#"> Your Posts </a>
-              </li>
-              <li>
-                {" "}
-                <a href="#"> new link</a>
-              </li>
-              <li>
-                {" "}
-                <a href="#"> new link </a>
+                <Link to="/"> HOME</Link>
+                <Link to="/Dashboard">Dashboard</Link>
+                <Link to="/ProfileUpdate">Profile</Link>
               </li>
             </ul>
           </div>
@@ -64,7 +67,14 @@ export default class Dashboard extends Component {
             <div>
               <div> Recent Posts </div>
               {/* {this.state.recentPost && recentPost.data.pid.blog} */}
-              {recentPosts}
+              <div className="post-list">
+                {user.displayname}
+                {recentPosts[4]}
+              </div>
+              <div className="post-list">{recentPosts[3]}</div>
+              <div className="post-list">{recentPosts[2]}</div>
+              <div className="post-list">{recentPosts[1]}</div>
+              <div className="post-list">{recentPosts[0]}</div>
             </div>
           </div>
           <Post />

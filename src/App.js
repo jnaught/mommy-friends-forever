@@ -1,6 +1,9 @@
 import React, { Component } from "react";
+import Login from "./Components/Login/Login";
+// import { Link } from "react-router-dom";
 // import axios from "axios";
-import Header from "./Components/Header/Header";
+// import Login from "./Components/Login/Login";
+// import Header from "./Components/Header/Header";
 // import logo from "./logo.svg";
 import "./App.css";
 import routes from "./routes";
@@ -28,9 +31,8 @@ class App extends Component {
     // const user = this.state.test;
     return (
       <div className="App">
-        <header className="App-header">
-          <Header />
-        </header>
+        {routes}
+        {/* <header className="App-header"><Header /></header> */}
 
         {/* {this.state.test && (
           <div>
@@ -40,8 +42,6 @@ class App extends Component {
             <div className="profile-name">{user.name.givenName}</div>
           </div>
         )} */}
-
-        <div> {routes} </div>
       </div>
     );
   }

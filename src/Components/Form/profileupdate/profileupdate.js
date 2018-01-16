@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import axios from "axios";
+import Header from "../../Header/Header";
 import "./profileupdate.css";
 
-export default class profile extends Component {
+export default class profileupdate extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -30,48 +31,50 @@ export default class profile extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <div className="form">
-          {" "}
-          <label>
-            First Name:
-            <input
-              type="text"
-              firstname={this.state.firstname}
-              onChange={e => this.setState({ firstname: e.target.value })}
-            />
-          </label>
-          <label>
-            Last Name:
-            <input
-              type="text"
-              lastname={this.state.lastname}
-              onChange={e => this.setState({ lastname: e.target.value })}
-            />
-          </label>
-          <label>
-            Age:
-            <input
-              type="text"
-              age={this.state.age}
-              onChange={e => this.setState({ age: e.target.value })}
-            />
-          </label>
-          <label>
-            Display Name:
-            <input
-              type="text"
-              displayname={this.state.displayname}
-              onChange={e => this.setState({ displayname: e.target.value })}
-            />
-          </label>
-          <input type="submit" value="Submit" />
-          <p>
-            {this.state.firstname} {this.state.lastname} {this.state.age}{" "}
-            {this.state.displayname}
-          </p>
-        </div>
-      </form>
+      <div>
+        <form onSubmit={this.handleSubmit}>
+          <div className="form">
+            {" "}
+            <label>
+              First Name:
+              <input
+                type="text"
+                firstname={this.state.firstname}
+                onChange={e => this.setState({ firstname: e.target.value })}
+              />
+            </label>
+            <label>
+              Last Name:
+              <input
+                type="text"
+                lastname={this.state.lastname}
+                onChange={e => this.setState({ lastname: e.target.value })}
+              />
+            </label>
+            <label>
+              Age:
+              <input
+                type="text"
+                age={this.state.age}
+                onChange={e => this.setState({ age: e.target.value })}
+              />
+            </label>
+            <label>
+              Display Name:
+              <input
+                type="text"
+                displayname={this.state.displayname}
+                onChange={e => this.setState({ displayname: e.target.value })}
+              />
+            </label>
+            <input type="submit" value="Submit" />
+            <p>
+              {this.state.firstname} {this.state.lastname} {this.state.age}{" "}
+              {this.state.displayname}
+            </p>
+          </div>
+        </form>
+      </div>
     );
   }
 }

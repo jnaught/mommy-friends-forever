@@ -75,7 +75,7 @@ passport.deserializeUser((user, done) => done(null, user));
 app.get(
   "/login",
   passport.authenticate("auth0", {
-    successRedirect: "http://localhost:3000/Dashboard",
+    successRedirect: "http://localhost:3000/Home",
     failureRedirect: "http://localhost:3000/login"
   })
 );
@@ -86,11 +86,12 @@ app.get("/api/me", (req, res, next) => {
 });
 
 app.post("/api/user", controller.createUser);
-app.get("/api/user/:id", controller.getUser);
+app.get("/api/user/:uid", controller.getUser);
 app.put("/api/user/:id", controller.updateUser);
 app.delete("/api/user/:id", controller.deleteUser);
 app.post("/api/post", controller.createPost);
 app.get("/api/post/", controller.getPost);
+app.get("/api/posts/", controller.getAllPost);
 app.delete("/api/post/:id", controller.deletePost);
 
 app.listen(process.env.PORT || 3001, () => {

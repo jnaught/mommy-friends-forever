@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import "./Header.css";
 
@@ -7,38 +8,55 @@ export default class Header extends Component {
     super(props);
 
     this.state = {
-      authUser: null
+      authUser: []
     };
   }
   componentDidMount() {
     axios.get("/api/me").then(response => {
-      this.setState({ authUser: response.data }).catch(console.log);
+      console.log("authUser: ", response);
+      this.setState({ authUser: response.data });
+      // axios
+      //   .get("/api/user/:uid")
+      //   .then(response => {
+      //     console.log("user: ", response);
+      //     this.setState({ user: response.data });
+      //   })
+      //   .catch(console.log);
     });
   }
 
   render() {
+    // let userID = this.state.authUser.user_id;
     const user = this.state.authUser;
-    if (user)
+
+    if (user) {
       return (
         <div className="parent">
           <div className="header-container">
-            <div>MOMMY FRIENDS FOREVER!</div>
-          </div>
-          {this.state.test && (
-            <div>
-              <div className="profile-picture">
-                <img src={user.picture} alt="profile" />
-              </div>
-              {/* <div className="profile-name">{user.name.givenName}</div> */}
+            <div className="profile-picture">
+              <img src={user.picture} alt="profile" />
+              {user.displayname}
             </div>
-          )}
+            <div>MOMMY FRIENDS FOREVER!</div>
+
+            <div className="nav-bar">
+              <Link to="/Home">DASHBOARD </Link>
+              {""}
+              <Link to="/Profile">PROFILE</Link>
+              {""}
+              <Link to="/UserPosts">MY POSTS</Link>
+            </div>
+          </div>
         </div>
       );
-    else
+    } else {
       return (
         <div className="header-alt-container">
           <div>MOMMY FRIENDS FOREVER!</div>
+          <div> Please Log In to Continue</div>
+          <div />
         </div>
       );
+    }
   }
 }

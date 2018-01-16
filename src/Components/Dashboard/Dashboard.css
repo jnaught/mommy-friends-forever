@@ -33,3 +33,11 @@ ul {
   align-self: center;
   list-style-type: none;
 }
+.post-list {
+  font-size: 20px;
+  color: green;
+  border: solid black;
+  height: 60px;
+  width: 50vw;
+  background: white;
+}

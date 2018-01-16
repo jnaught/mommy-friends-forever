@@ -1,19 +1,19 @@
 module.exports = {
   createUser: (req, res, next) => {
     const db = req.app.get("db");
-    const { firstname, lastname, age, displayname } = req.body;
-    console.log(firstname, lastname, age, displayname);
+    const { id, firstname, lastname, displayname, picture } = req.body;
+    console.log(id, firstname, lastname, displayname, picture);
     db
-      .createUser([firstname, lastname, age, displayname])
+      .createUser([id, firstname, lastname, displayname, picture])
       .then(() => res.status(200).send())
       .catch(console.log);
   },
   getUser: (req, res, next) => {
     const db = req.app.get("db");
     const { params } = req;
-    console.log(params);
+    // console.log(params);
     db
-      .getUser(req.params.id)
+      .getUser(req.params.uid)
       .then(user => {
         res.status(200).send(user);
       })
@@ -38,7 +38,7 @@ module.exports = {
     const { putpost } = req.body;
     // console.log(req.body);
     db
-      .createPost(putpost)
+      .createPost([putpost, req.user.user_id])
       .then(() => res.status(200).send())
       .catch(console.log);
   },
@@ -49,6 +49,18 @@ module.exports = {
 
     db
       .getPost(req.params.id)
+      .then(user => {
+        res.status(200).send(user);
+      })
+      .catch(console.log);
+  },
+  getAllPost: (req, res, next) => {
+    const db = req.app.get("db");
+    const { params } = req;
+    console.log(req.body);
+
+    db
+      .getAllPost(req.params.id)
       .then(user => {
         res.status(200).send(user);
       })
