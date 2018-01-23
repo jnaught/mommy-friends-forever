@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import Header from "../../Header/Header";
+// import Header from "../../Header/Header";
 import "./profileupdate.css";
 
 export default class profileupdate extends Component {
@@ -33,7 +33,7 @@ export default class profileupdate extends Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          <div className="form">
+          <div className="profileupdate-container">
             {" "}
             <label>
               First Name:
@@ -67,11 +67,13 @@ export default class profileupdate extends Component {
                 onChange={e => this.setState({ displayname: e.target.value })}
               />
             </label>
-            <input type="submit" value="Submit" />
             <p>
               {this.state.firstname} {this.state.lastname} {this.state.age}{" "}
               {this.state.displayname}
             </p>
+          </div>
+          <div className="profileupdate-button">
+            <input type="submit" value="Submit" />
           </div>
         </form>
       </div>

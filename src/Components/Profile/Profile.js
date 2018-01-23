@@ -14,8 +14,10 @@ export default class Profile extends Component {
         <div>
           {" "}
           <Header />
-          <Update />
-          <Hobbies />
+          <div className="profile-container">
+            <Update />
+            <Hobbies />
+          </div>
         </div>
       </div>
     );

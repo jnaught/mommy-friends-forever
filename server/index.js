@@ -43,7 +43,7 @@ passport.use(
       scope: "openid profile"
     },
     (accessToken, refreshToken, extraParams, profile, done) => {
-      console.log(profile);
+      // console.log("authStrat: ", profile);
       app
         .get("db")
         .getUser(profile.id)
@@ -93,6 +93,7 @@ app.post("/api/post", controller.createPost);
 app.get("/api/post/", controller.getPost);
 app.get("/api/posts/", controller.getAllPost);
 app.delete("/api/post/:id", controller.deletePost);
+app.put("/api/profile", controller.updateProfile);
 
 app.listen(process.env.PORT || 3001, () => {
   console.log(`App listening on port ${process.env.PORT || 3001}!`);

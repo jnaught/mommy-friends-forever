@@ -19,6 +19,13 @@ module.exports = {
       })
       .catch(console.log);
   },
+  updateProfile: (req, res, next) => {
+    const db = req.app.get("db");
+    db
+      .updateProfile([area, children, playdate, mommydate, flavor])
+      .then(() => res.status(200).send())
+      .catch(console.log);
+  },
   updateUser: (req, res, next) => {
     const db = req.app.get("db");
     db

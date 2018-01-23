@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 import "./Dashboard.css";
 import Post from "../Post/Post";
-import Header from "../Header/Header";
+// import Header from "../Header/Header";
 
 export default class Dashboard extends Component {
   constructor(props) {
@@ -12,6 +12,7 @@ export default class Dashboard extends Component {
 
     this.state = {
       recentPost: [],
+      userPost: [],
       user: ""
     };
   }
@@ -19,7 +20,7 @@ export default class Dashboard extends Component {
     axios
       .get("/api/posts")
       .then(response => {
-        console.log("Blogs: ", response);
+        // console.log("Blogs: ", response);
         this.setState({ recentPost: response.data });
       })
       .catch(console.log);
@@ -27,7 +28,7 @@ export default class Dashboard extends Component {
     axios
       .get("/api/user/:uid")
       .then(response => {
-        console.log("user: ", response);
+        // console.log("user: ", response);
         this.setState({ user: response.data });
       })
       .catch(console.log);
@@ -44,7 +45,7 @@ export default class Dashboard extends Component {
     const recentPost = this.state.recentPost;
     let recentPosts = recentPost.map(data => data.blog);
 
-    console.log(recentPost);
+    // console.log(recentPost);
     return (
       <div className="dashboard-container">
         <div className="dashboard-intro">
@@ -65,16 +66,14 @@ export default class Dashboard extends Component {
         <div className="post-feed">
           <div className="recent-post">
             <div>
-              <div> Recent Posts </div>
-              {/* {this.state.recentPost && recentPost.data.pid.blog} */}
-              <div className="post-list">
-                {user.displayname}
-                {recentPosts[4]}
+              <div className="dashboard-title"> Recent Posts </div>
+              <div className="post-list-container">
+                <div className="post-list">{recentPosts[4]}</div>
+                <div className="post-list">{recentPosts[3]}</div>
+                <div className="post-list">{recentPosts[2]}</div>
+                <div className="post-list">{recentPosts[1]}</div>
+                <div className="post-list">{recentPosts[0]}</div>
               </div>
-              <div className="post-list">{recentPosts[3]}</div>
-              <div className="post-list">{recentPosts[2]}</div>
-              <div className="post-list">{recentPosts[1]}</div>
-              <div className="post-list">{recentPosts[0]}</div>
             </div>
           </div>
           <Post />

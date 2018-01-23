@@ -1,3 +1,17 @@
-body {
-  background: #ffffff;
+.profileupdate-container {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  box-shadow: 4px 4px 6px 7px #e807789d;
+  height: 55vh;
+  width: 35vw;
+}
+.profileupdate-button {
+  height: 55px;
+  width: 325px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

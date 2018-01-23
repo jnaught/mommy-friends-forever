@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import logo from "../images/Mommy_transparent.png";
 import "./Header.css";
 
 export default class Header extends Component {
@@ -9,17 +10,18 @@ export default class Header extends Component {
 
     this.state = {
       authUser: []
+      // users: []
     };
   }
   componentDidMount() {
     axios.get("/api/me").then(response => {
-      console.log("authUser: ", response);
+      // console.log("authUser: ", response);
       this.setState({ authUser: response.data });
       // axios
       //   .get("/api/user/:uid")
       //   .then(response => {
       //     console.log("user: ", response);
-      //     this.setState({ user: response.data });
+      //     this.setState({ users: response.data });
       //   })
       //   .catch(console.log);
     });
@@ -28,16 +30,21 @@ export default class Header extends Component {
   render() {
     // let userID = this.state.authUser.user_id;
     const user = this.state.authUser;
-
+    // const users = this.state.user;
+    // console.log("propsUser: ", user);
     if (user) {
       return (
         <div className="parent">
           <div className="header-container">
             <div className="profile-picture">
-              <img src={user.picture} alt="profile" />
+              <img
+                className="profile-logo"
+                src={logo}
+                alt="Mommy Friends Forever"
+              />
               {user.displayname}
             </div>
-            <div>MOMMY FRIENDS FOREVER!</div>
+            {/* <div>MOMMY FRIENDS FOREVER!</div> */}
 
             <div className="nav-bar">
               <Link to="/Home">DASHBOARD </Link>
@@ -49,14 +56,15 @@ export default class Header extends Component {
           </div>
         </div>
       );
-    } else {
-      return (
-        <div className="header-alt-container">
-          <div>MOMMY FRIENDS FOREVER!</div>
-          <div> Please Log In to Continue</div>
-          <div />
-        </div>
-      );
     }
+    // else {
+    //   return (
+    //     <div className="header-alt-container">
+    //       <div>MOMMY FRIENDS FOREVER!</div>
+    //       <div> Please Log In to Continue</div>
+    //       <div />
+    //     </div>
+    //   );
+    // }
   }
 }

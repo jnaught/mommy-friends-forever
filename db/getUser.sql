@@ -1,3 +1,4 @@
-SELECT *
-FROM users
--- WHERE user_id =$1;
+SELECT user_id
+FROM post
+ORDER BY pid DESC
+LIMIT 5
