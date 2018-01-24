@@ -86,5 +86,29 @@ module.exports = {
       .deletePost(params.id)
       .then(() => res.status(200).json())
       .catch(console.log);
+  },
+  getUserPic: (req, res, next) => {
+    const db = req.app.get("db");
+    const { params } = req;
+    console.log(req.body);
+
+    db
+      .getUserPic(req.params.id)
+      .then(user => {
+        res.status(200).send(user);
+      })
+      .catch(console.log);
+  },
+  getAuthorID: (req, res, next) => {
+    const db = req.app.get("db");
+    const { params } = req;
+    console.log(req.body);
+
+    db
+      .getAuthorID(req.params.id)
+      .then(user => {
+        res.status(200).send(user);
+      })
+      .catch(console.log);
   }
 };

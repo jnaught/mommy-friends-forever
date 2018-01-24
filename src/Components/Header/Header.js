@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
+// import axios from "axios";
 import logo from "../images/Mommy_transparent.png";
 import "./Header.css";
 
@@ -9,23 +9,23 @@ export default class Header extends Component {
     super(props);
 
     this.state = {
-      authUser: []
-      // users: []
+      authUser: [],
+      users: []
     };
   }
-  componentDidMount() {
-    axios.get("/api/me").then(response => {
-      // console.log("authUser: ", response);
-      this.setState({ authUser: response.data });
-      // axios
-      //   .get("/api/user/:uid")
-      //   .then(response => {
-      //     console.log("user: ", response);
-      //     this.setState({ users: response.data });
-      //   })
-      //   .catch(console.log);
-    });
-  }
+  // componentDidMount() {
+  //   axios.get("/api/user/:uid").then(response => {
+  //     console.log("authUser: ", response);
+  //     this.setState({ authUser: response.data });
+  //     axios
+  //       .get("/api/user")
+  //       .then(response => {
+  //         console.log("users: ", response);
+  //         this.setState({ users: response.data });
+  //       })
+  //       .catch(console.log);
+  //   });
+  // }
 
   render() {
     // let userID = this.state.authUser.user_id;
@@ -42,7 +42,7 @@ export default class Header extends Component {
                 src={logo}
                 alt="Mommy Friends Forever"
               />
-              {user.displayname}
+              {/* {this.props.user.displayname} */}
             </div>
             {/* <div>MOMMY FRIENDS FOREVER!</div> */}
 

@@ -14,11 +14,12 @@ export function updateUsername(username, id) {
   };
 }
 
-export function retrieveUSer() {
+export function retrieveUser(uid) {
+  console.log("function");
   return {
     type: RETRIEVE_USER,
     payload: axios
-      .get("/api/me")
+      .get("/api/user/" + uid)
       .then(response => response.data)
       .catch(console.log)
   };
@@ -31,27 +32,30 @@ const initialState = {
 };
 
 export default function userReducer(state = initialState, action) {
-    switch (action.type) {
-        case `${RETRIEVE_USER}_PENDING`:
-          return Object.assign({}, state, { isLoading: true });
-    
-        case `${RETRIEVE_USER}_FULFILLED`:
-          return Object.assign({}, state, {
-            isLoading: false,
-            user: action.payload
-          });
-    
-        case `${RETRIEVE_USER}_REJECTED`:
-          return Object.assign({}, state, {
-            isLoading: false,
-            didError: true
-          });
-    
-        case `${UPDATE_NAME}_FULFILLED`:
-          return Object.assign({}, state, { user: action.payload });
-    
-        default:
-          return state;
-      }
-    }
+  switch (action.type) {
+    case `${RETRIEVE_USER}_PENDING`:
+      console.log("pending");
+      return Object.assign({}, state, { isLoading: true });
+
+    case `${RETRIEVE_USER}_FULFILLED`:
+      console.log("fulfilled");
+      return Object.assign({}, state, {
+        isLoading: false,
+        user: action.payload
+      });
+
+    case `${RETRIEVE_USER}_REJECTED`:
+      console.log("rejected");
+      return Object.assign({}, state, {
+        isLoading: false,
+        didError: true
+      });
+
+    case `${UPDATE_NAME}_FULFILLED`:
+      console.log("fulfilled");
+      return Object.assign({}, state, { user: action.payload });
+
+    default:
+      return state;
+  }
 }

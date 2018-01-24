@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import axios from "axios";
-// import Header from "../../Header/Header";
 import "./profileupdate.css";
 
 export default class profileupdate extends Component {

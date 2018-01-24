@@ -39,8 +39,8 @@ passport.use(
       domain: process.env.AUTH_DOMAIN,
       clientSecret: process.env.CLIENT_SECRET,
       clientID: process.env.CLIENT_ID,
-      callbackURL: "/login",
-      scope: "openid profile"
+      callbackURL: "/login"
+      // scope: "openid profile"
     },
     (accessToken, refreshToken, extraParams, profile, done) => {
       // console.log("authStrat: ", profile);
@@ -85,15 +85,18 @@ app.get("/api/me", (req, res, next) => {
   else res.redirect("/login");
 });
 
-app.post("/api/user", controller.createUser);
+app.post("/api/user/", controller.createUser);
+app.get("/api/authorID/", controller.getAuthorID);
+app.get("/api/user/", controller.getUser);
 app.get("/api/user/:uid", controller.getUser);
+app.get("/api/pic", controller.getUserPic);
 app.put("/api/user/:id", controller.updateUser);
 app.delete("/api/user/:id", controller.deleteUser);
-app.post("/api/post", controller.createPost);
+app.post("/api/post/", controller.createPost);
 app.get("/api/post/", controller.getPost);
 app.get("/api/posts/", controller.getAllPost);
 app.delete("/api/post/:id", controller.deletePost);
-app.put("/api/profile", controller.updateProfile);
+app.put("/api/profile/", controller.updateProfile);
 
 app.listen(process.env.PORT || 3001, () => {
   console.log(`App listening on port ${process.env.PORT || 3001}!`);
