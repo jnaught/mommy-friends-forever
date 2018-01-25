@@ -23,6 +23,7 @@ export default class profileupdate extends Component {
 
   handleSubmit(event) {
     const { firstname, lastname, age, displayname } = this.state;
+
     axios
       .post("/api/user", { firstname, lastname, age, displayname })
       .then(res => console.log(res));

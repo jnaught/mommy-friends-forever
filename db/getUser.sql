@@ -1,4 +1,3 @@
 SELECT user_id
-FROM post
-ORDER BY pid DESC
-LIMIT 5
+FROM users
+WHERE user_id = $1

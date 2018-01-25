@@ -36,7 +36,13 @@ export default class UserPosts extends Component {
           <Header />{" "}
         </div>
         <div> User Posts</div>
+        <div> {usersPosts[0]} </div>
+        <div> {usersPosts[1]} </div>
+        <div> {usersPosts[2]} </div>
+        <div> {usersPosts[3]} </div>
+        <div> {usersPosts[4]} </div>
         <div> {usersPosts[5]} </div>
+        <div> {usersPosts[6]} </div>
       </div>
     );
   }

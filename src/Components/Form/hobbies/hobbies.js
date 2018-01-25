@@ -14,11 +14,11 @@ export default class Hobbies extends Component {
       flavor: this.handleChange.bind(this, "flavor")
     };
     this.state = {
-      area: "",
-      children: "",
-      playdate: "",
-      mommydate: "",
-      flavor: ""
+      area: "Roanoke",
+      children: "infant - 3yrs",
+      playdate: "yes",
+      mommydate: "yes",
+      flavor: "lime"
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -31,7 +31,9 @@ export default class Hobbies extends Component {
   handleSubmit(event) {
     const { interests } = this.state;
 
-    axios.post("/api/profile", { interests }).then(res => console.log(res));
+    axios
+      .post("/api/updateUser/", { interests })
+      .then(response => console.log("updateuser submit", response));
   }
 
   render() {
@@ -45,21 +47,20 @@ export default class Hobbies extends Component {
             {/* ------------------------------------------------ option one ------------------------------ */}
             <div className="list">
               <label>
-                <div>Location: </div>
+                <div>Location: {this.state.area}</div>
               </label>
               <div>
                 <select value={this.state.area} onChange={this.onChange.area}>
                   <option value="Roanoke">Roanoke</option>
                   <option value="Trophy Club">Trophy Club</option>
                   <option value="GrapeVine">GrapeVine</option>
-                  {/* <option value="mango">Mango</option> */}
                 </select>
               </div>
             </div>
             {/* ------------------------------------------------ option two ------------------------------ */}
 
             <div className="list">
-              <label>Child age: </label>
+              <label>Child age: {this.state.children}</label>
               <div>
                 <select
                   value={this.state.children}
@@ -75,35 +76,31 @@ export default class Hobbies extends Component {
             {/* ------------------------------------------------ option three ------------------------------ */}
 
             <div className="list">
-              <label>Looking for Playdate: </label>
+              <label>Looking for Playdate: {this.state.playdate}</label>
               <select
                 value={this.state.playdate}
                 onChange={this.onChange.playdate}
               >
-                <option value="true">Yes</option>
-                <option value="false">No</option>
-                {/* <option value="coconut">Coconut</option>
-              <option value="mango">Mango</option> */}
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
               </select>
             </div>
             {/* ------------------------------------------------ option four ------------------------------ */}
 
             <div className="list">
-              <label>Looking for a Mommy Date: </label>
+              <label>Looking for a Mommy Date: {this.state.mommydate}</label>
               <select
                 value={this.state.value}
                 onChange={this.onChange.mommydate}
               >
-                <option value="true">Yes</option>
-                <option value="false">No</option>
-                {/* <option value="coconut">Coconut</option>
-              <option value="mango">Mango</option> */}
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
               </select>
             </div>
             {/* ------------------------------------------------ option five ------------------------------ */}
 
             <div className="list">
-              <label>Pick your favorite La Croix flavor: </label>
+              <label>favorite La Croix flavor:{this.state.flavor} </label>
               <select value={this.state.flavor} onChange={this.onChange.flavor}>
                 <option value="grapefruit">Grapefruit</option>
                 <option value="lime">Lime</option>

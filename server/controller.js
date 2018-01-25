@@ -2,7 +2,7 @@ module.exports = {
   createUser: (req, res, next) => {
     const db = req.app.get("db");
     const { id, firstname, lastname, displayname, picture } = req.body;
-    console.log(id, firstname, lastname, displayname, picture);
+    console.log("createUser: ", id, firstname, lastname, displayname, picture);
     db
       .createUser([id, firstname, lastname, displayname, picture])
       .then(() => res.status(200).send())
@@ -11,7 +11,6 @@ module.exports = {
   getUser: (req, res, next) => {
     const db = req.app.get("db");
     const { params } = req;
-    // console.log(params);
     db
       .getUser(req.params.uid)
       .then(user => {
@@ -19,17 +18,12 @@ module.exports = {
       })
       .catch(console.log);
   },
-  updateProfile: (req, res, next) => {
-    const db = req.app.get("db");
-    db
-      .updateProfile([area, children, playdate, mommydate, flavor])
-      .then(() => res.status(200).send())
-      .catch(console.log);
-  },
   updateUser: (req, res, next) => {
+    console.log("updateUser HIT!");
     const db = req.app.get("db");
+    const { area, children, playdate, mommydate, flavor } = req.body;
     db
-      .updateUser([params.id, query.desc])
+      .updateUser([area, children, playdate, mommydate, flavor])
       .then(() => res.status(200).send())
       .catch(console.log);
   },
@@ -111,4 +105,24 @@ module.exports = {
       })
       .catch(console.log);
   }
+  // getProfile: (req, res, next) => {
+  //   const db = req.app.get("db");
+  //   const { params } = req;
+  //   console.log(req.body);
+
+  //   db
+  //     .getProfile(req.params.id)
+  //     .then(user => {
+  //       res.status(200).send(user);
+  //     })
+  //     .catch(console.log);
+  // },
+  // updateProfile: (req, res, next) => {
+  //   const { area, children, playdate, mommydate, flavor } = req.body;
+  //   const db = req.app.get("db");
+  //   db
+  //     .updateProfile([area, children, playdate, mommydate, flavor])
+  //     .then(() => res.status(200).send())
+  //     .catch(console.log);
+  // }
 };

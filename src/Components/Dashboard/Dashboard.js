@@ -19,29 +19,30 @@ export default class Dashboard extends Component {
       authorID: ""
     };
   }
+
   componentDidMount() {
     // --------------------------- [get posts= set state for recentPosts] ----------------------
     axios
-      .get("/api/posts")
+      .get("/api/allPosts")
       .then(response => {
-        console.log("Blogs: ", response);
+        // console.log("Blogs: ", response);
         this.setState({ recentPost: response.data });
       })
       .catch(console.log);
     // --------------------------- [get user id= set state for user] ----------------------
     axios
-      .get("/api/user/:uid")
+      .get("/api/me")
       .then(response => {
-        // console.log("user: ", response);
+        console.log("user: ", response);
         this.setState({ user: response.data });
       })
       .catch(console.log);
     // --------------------------- [get picture= sets state for picture] ----------------------
     axios
-      .get("/api/pic/")
+      .get("/api/pic/:uid", this.state.user.user_id)
       .then(response => {
         console.log("pic: ", response);
-        this.setState({ picture: response.data[0] });
+        this.setState({ picture: response.data });
       })
       .catch(console.log);
 
@@ -50,29 +51,30 @@ export default class Dashboard extends Component {
     axios
       .get("/api/authorID/")
       .then(response => {
-        console.log("authorID: ", response);
+        // console.log("authorID: ", response);
         this.setState({ authorID: response.data[0] });
       })
       .catch(console.log);
   }
-
+  // getUser(){
+  //   axios.get('/spi/getUser/')
+  // }
   getPost() {
     axios
-      .get("/api/post", { recentPost: this.state.recentPost })
+      .get("/api/recentPosts", { recentPost: this.state.recentPost })
       .then(response => console.log(response))
       .catch(console.log);
   }
 
   render() {
-    // const user = this.state.user;
     const profilepic = this.state.picture;
     const recentPost = this.state.recentPost;
     const author = this.state.authorID;
-    // const recentPostID = this.state.recentPost;
     let recentPosts = recentPost.map(data => data.blog);
+    // console.log("State: ", this.state);
     // console.log("dashboard: ", this.state.user);
     // console.log("props: ", this.props.user);
-    console.log("author id: ", this.state.authorID);
+    // console.log("author id: ", this.state.authorID);
     return (
       <div className="dashboard-container">
         <div className="dashboard-intro">

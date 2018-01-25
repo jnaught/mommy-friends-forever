@@ -16,7 +16,7 @@ massive(process.env.CONNECTION_STRING)
     app.set("db", db);
   })
   .catch(console.log);
-
+app.use(express.static(`${__dirname}/../build`));
 app.use(json());
 app.use(cors());
 app.use(
@@ -39,16 +39,18 @@ passport.use(
       domain: process.env.AUTH_DOMAIN,
       clientSecret: process.env.CLIENT_SECRET,
       clientID: process.env.CLIENT_ID,
-      callbackURL: "/login"
-      // scope: "openid profile"
+      callbackURL: "/login",
+      scope: "openid profile"
     },
     (accessToken, refreshToken, extraParams, profile, done) => {
-      // console.log("authStrat: ", profile);
+      console.log("authStrat: ", profile);
       app
         .get("db")
         .getUser(profile.id)
         .then(response => {
+          console.log(response);
           if (!response[0]) {
+            console.log("createUSer: ");
             app
               .get("db")
               .createUser([
@@ -62,6 +64,7 @@ passport.use(
                 return done(null, profile);
               });
           } else {
+            console.log('existing"');
             return done(null, response[0]);
           }
         });
@@ -84,19 +87,27 @@ app.get("/api/me", (req, res, next) => {
   if (req.user) res.json(req.user);
   else res.redirect("/login");
 });
+// ------------------------ [users]---------------------
 
-app.post("/api/user/", controller.createUser);
+app.post("/api/createUser/", controller.createUser);
+app.get("/api/getUser/", controller.getUser);
+// app.get("/api/getUser/:uid", controller.getUser);
+app.get("/api/pic/:uid", controller.getUserPic);
+app.put("/api/updateUser/", controller.updateUser);
+app.delete("/api/deleteUser/:id", controller.deleteUser);
+
+// ------------------------ [post]---------------------
+
+app.post("/api/createPost/", controller.createPost);
+app.get("/api/getPost/", controller.getPost);
+app.get("/api/allPosts/", controller.getAllPost);
+app.delete("/api/deletePost/:id", controller.deletePost);
 app.get("/api/authorID/", controller.getAuthorID);
-app.get("/api/user/", controller.getUser);
-app.get("/api/user/:uid", controller.getUser);
-app.get("/api/pic", controller.getUserPic);
-app.put("/api/user/:id", controller.updateUser);
-app.delete("/api/user/:id", controller.deleteUser);
-app.post("/api/post/", controller.createPost);
-app.get("/api/post/", controller.getPost);
-app.get("/api/posts/", controller.getAllPost);
-app.delete("/api/post/:id", controller.deletePost);
-app.put("/api/profile/", controller.updateProfile);
+
+// ------------------------ [profiles---------------------
+
+// app.post("/api/profile/", controller.updateProfile);
+// app.get("/api/getProfile/", controller.getProfile);
 
 app.listen(process.env.PORT || 3001, () => {
   console.log(`App listening on port ${process.env.PORT || 3001}!`);
