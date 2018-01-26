@@ -1,6 +1,6 @@
 .dashboard-container {
   padding: 40px;
-  height: 100vh;
+  height: 60vh;
   display: flex;
   justify-content: space-around;
 }
@@ -40,6 +40,10 @@
   height: 40vh;
   width: 15vw;
 }
+.list-container img {
+  height: 40px;
+  width: auto;
+}
 ul {
   display: flex;
   flex-direction: column;
@@ -65,7 +69,7 @@ ul {
 }
 .post-list img {
   border: 1px solid blue;
-  height: 50%;
+  height: 50px;
   width: auto;
 }
 .authorID {

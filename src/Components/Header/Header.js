@@ -9,14 +9,14 @@ export default class Header extends Component {
     super(props);
 
     this.state = {
-      authUser: [],
+      authUser: "",
       users: []
     };
   }
   componentDidMount() {
     axios.get("/api/me").then(response => {
-      console.log("authUser: ", response);
-      this.setState({ authUser: response.data });
+      // console.log("authUser: ", response);
+      this.setState({ authUser: response.data.user_id });
       // axios
       //   .get("/api/user")
       //   .then(response => {
@@ -28,7 +28,7 @@ export default class Header extends Component {
   }
 
   render() {
-    // console.log("state.authUser: ", this.state.authUser[1]);
+    // console.log("state.authUser: ", this.state.authUser);
     return (
       <div className="parent">
         <div className="header-container">

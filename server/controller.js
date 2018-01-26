@@ -104,6 +104,7 @@ module.exports = {
       .catch(console.log);
   },
   getUserPic: (req, res, next) => {
+    console.log("hit: getUserPic", req.body);
     const db = req.app.get("db");
     const { params } = req;
     console.log(req.body);

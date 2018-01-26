@@ -5,6 +5,8 @@ import axios from "axios";
 // import { retrieveUser } from "../../ducks/user";
 import "./Dashboard.css";
 import Post from "../Post/Post";
+import profileicon1 from "../images/imageicon_1.png";
+import profileicon2 from "../images/imageicon_2.png";
 // import Header from "../Header/Header";
 
 export default class Dashboard extends Component {
@@ -33,7 +35,6 @@ export default class Dashboard extends Component {
     axios
       .get("/api/me")
       .then(response => {
-        console.log("user: ", response);
         this.setState({ user: response.data });
       })
       .catch(console.log);
@@ -41,7 +42,7 @@ export default class Dashboard extends Component {
 
     axios
 
-      .get("/api/pic/")
+      .get("/api/pic/" + this.state.user)
       .then(response => {
         console.log("pic: ", response);
         this.setState({ picture: response.data });
@@ -59,6 +60,12 @@ export default class Dashboard extends Component {
       .catch(console.log);
   }
 
+  // getUserPic() {
+  //   axios
+  //     .get("api/pic", { picture: this.state.picture })
+  //     .then(response => console.log(response))
+  //     .catch(console.log);
+  // }
   getPost() {
     axios
       .get("/api/recentPosts", { recentPost: this.state.recentPost })
@@ -73,7 +80,7 @@ export default class Dashboard extends Component {
     let recentPosts = recentPost.map(data => data.blog);
 
     // console.log("State: ", this.state);
-    // console.log("dashboard: ", this.state.user);
+    console.log("user_info: ", this.state.user);
     // console.log("props: ", this.props.user);
     // console.log("author id: ", this.state.authorID);
     return (
@@ -83,7 +90,7 @@ export default class Dashboard extends Component {
           <div className="list-container">
             <div>
               {" "}
-              <img src={profilepic.picture} alt="" />
+              <img src={profileicon1} alt="" />
               {profilepic.firstname}
             </div>
           </div>
@@ -98,7 +105,7 @@ export default class Dashboard extends Component {
                 <div className="post-list">
                   <div>
                     {" "}
-                    <img src={profilepic.picture} alt="" />
+                    <img src={profileicon1} alt="" />
                     <div className="authorID">{author.firstname}</div>
                   </div>
                   <div> {recentPosts[4]}</div>
@@ -106,7 +113,7 @@ export default class Dashboard extends Component {
                 <div className="post-list">
                   <div>
                     {" "}
-                    <img src={profilepic.picture} alt="" />
+                    <img src={profileicon2} alt="" />
                     <div className="authorID">{author.firstname}</div>
                   </div>
                   <div> {recentPosts[3]}</div>
@@ -114,7 +121,7 @@ export default class Dashboard extends Component {
                 <div className="post-list">
                   <div>
                     {" "}
-                    <img src={profilepic.picture} alt="" />
+                    <img src={profileicon1} alt="" />
                     <div className="authorID">{author.firstname}</div>
                   </div>
                   <div> {recentPosts[2]}</div>
@@ -122,7 +129,7 @@ export default class Dashboard extends Component {
                 <div className="post-list">
                   <div>
                     {" "}
-                    <img src={profilepic.picture} alt="" />
+                    <img src={profileicon2} alt="" />
                     <div className="authorID">{author.firstname}</div>
                   </div>
                   <div> {recentPosts[1]}</div>
@@ -130,7 +137,7 @@ export default class Dashboard extends Component {
                 <div className="post-list">
                   <div>
                     {" "}
-                    <img src={profilepic.picture} alt="" />
+                    <img src={profileicon1} alt="" />
                     <div className="authorID">{author.firstname}</div>
                   </div>
                   <div> {recentPosts[0]}</div>
