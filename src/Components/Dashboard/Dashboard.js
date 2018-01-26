@@ -38,10 +38,10 @@ export default class Dashboard extends Component {
       })
       .catch(console.log);
     // --------------------------- [get picture= sets state for picture] ----------------------
-    let user_id = this.state.user;
+
     axios
 
-      .get("/api/pic/", user_id)
+      .get("/api/pic/")
       .then(response => {
         console.log("pic: ", response);
         this.setState({ picture: response.data });

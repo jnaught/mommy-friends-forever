@@ -18,25 +18,33 @@ export default class Hobbies extends Component {
       children: "infant - 3yrs",
       playdate: "yes",
       mommydate: "yes",
-      flavor: "lime"
+      flavor: "lime",
+      user_id: ""
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-
+  componentDidMount() {
+    axios
+      .get("/api/me")
+      .then(response => {
+        console.log("user: ", response);
+        this.setState({ user_id: response.data.user_id });
+      })
+      .catch(console.log);
+  }
   handleChange(name, event) {
     this.setState({ [name]: event.target.value });
   }
 
   handleSubmit(event) {
-    let { interests } = this.state;
-
     axios
-      .post("/api/updateUser/", { interests })
-      .then(response => console.log("updateuser submit", response));
+      .put("/api/updateUser/", this.state)
+      .then(response => console.log(response));
   }
 
   render() {
+    console.log(this.state);
     return (
       <div className="form-container">
         <div className="hobby-title">Let's get a little more information</div>

@@ -12,7 +12,7 @@ module.exports = {
     const db = req.app.get("db");
     const { params } = req;
     db
-      .getUser(req.params.uid)
+      .getUser(req.params.id)
       .then(user => {
         res.status(200).send(user);
       })
@@ -21,9 +21,19 @@ module.exports = {
   updateUser: (req, res, next) => {
     console.log("updateUser HIT!");
     const db = req.app.get("db");
-    const { area, children, playdate, mommydate, flavor } = req.body;
+    console.log(req.body);
+    const { area, children, playdate, mommydate, flavor, user_id } = req.body;
+    console.log(
+      "updateUser: ",
+      area,
+      children,
+      playdate,
+      mommydate,
+      flavor,
+      user_id
+    );
     db
-      .updateUser([area, children, playdate, mommydate, flavor])
+      .updateUser(area, children, playdate, mommydate, flavor, user_id)
       .then(() => res.status(200).send())
       .catch(console.log);
   },

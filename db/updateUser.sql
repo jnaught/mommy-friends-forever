@@ -1,4 +1,8 @@
-INSERT INTO users
-    (area, children, playdate, mommydate, flavor)
-VALUES
-    ($1, $2, $3, $4, $5);
+UPDATE users
+SET 
+area =$1, 
+children = $2, 
+playdate =$3, 
+mommydate= $4, 
+flavor=$5
+WHERE user_id = $6
