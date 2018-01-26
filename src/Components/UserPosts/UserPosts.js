@@ -13,7 +13,7 @@ export default class UserPosts extends Component {
 
   componentDidMount() {
     axios
-      .get("/api/post")
+      .get("/api/getPost")
       .then(response => {
         console.log("Blogs: ", response);
         this.setState({ userPost: response.data });
@@ -22,7 +22,7 @@ export default class UserPosts extends Component {
   }
   getPost() {
     axios
-      .get("/api/post", { userPost: this.state.userPost })
+      .get("/api/getPost", { userPost: this.state.userPost })
       .then(response => console.log(response))
       .catch(console.log);
   }

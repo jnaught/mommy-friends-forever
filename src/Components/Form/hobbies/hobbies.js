@@ -29,7 +29,7 @@ export default class Hobbies extends Component {
   }
 
   handleSubmit(event) {
-    const { interests } = this.state;
+    let { interests } = this.state;
 
     axios
       .post("/api/updateUser/", { interests })

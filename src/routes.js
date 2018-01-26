@@ -5,6 +5,7 @@ import Login from "./Components/Login/Login";
 import Dashboard from "./Components/Dashboard/Dashboard";
 import Profile from "./Components/Profile/Profile";
 import UserPosts from "./Components/UserPosts/UserPosts";
+import allPosts from "./Components/Post/allPosts";
 
 export default (
   <Switch>
@@ -13,5 +14,6 @@ export default (
     <Route component={Dashboard} path="/Dashboard" />
     <Route component={Profile} path="/Profile" />
     <Route component={UserPosts} path="/UserPosts" />
+    <Route component={allPosts} path="/allPosts" />
   </Switch>
 );

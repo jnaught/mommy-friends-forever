@@ -55,6 +55,18 @@ module.exports = {
       })
       .catch(console.log);
   },
+  getRecentPost: (req, res, next) => {
+    const db = req.app.get("db");
+    const { params } = req;
+    console.log(req.body);
+
+    db
+      .getRecentPost(req.params.id)
+      .then(user => {
+        res.status(200).send(user);
+      })
+      .catch(console.log);
+  },
   getAllPost: (req, res, next) => {
     const db = req.app.get("db");
     const { params } = req;

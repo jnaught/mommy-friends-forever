@@ -1,4 +1,4 @@
-SELECT *
+SELECT user_id, blog
 FROM post
 ORDER BY pid DESC
-LIMIT 16
+LIMIT 5

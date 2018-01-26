@@ -48,6 +48,8 @@ export default class Header extends Component {
             <Link to="/Profile">PROFILE</Link>
             {""}
             <Link to="/UserPosts">MY POSTS</Link>
+            {""}
+            <Link to="/allPosts">EVENTS</Link>
           </div>
         </div>
       </div>

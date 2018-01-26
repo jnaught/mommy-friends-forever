@@ -23,7 +23,7 @@ export default class Dashboard extends Component {
   componentDidMount() {
     // --------------------------- [get posts= set state for recentPosts] ----------------------
     axios
-      .get("/api/allPosts")
+      .get("/api/recentPosts")
       .then(response => {
         // console.log("Blogs: ", response);
         this.setState({ recentPost: response.data });
@@ -38,8 +38,10 @@ export default class Dashboard extends Component {
       })
       .catch(console.log);
     // --------------------------- [get picture= sets state for picture] ----------------------
+    let user_id = this.state.user;
     axios
-      .get("/api/pic/:uid", this.state.user.user_id)
+
+      .get("/api/pic/", user_id)
       .then(response => {
         console.log("pic: ", response);
         this.setState({ picture: response.data });
@@ -56,9 +58,7 @@ export default class Dashboard extends Component {
       })
       .catch(console.log);
   }
-  // getUser(){
-  //   axios.get('/spi/getUser/')
-  // }
+
   getPost() {
     axios
       .get("/api/recentPosts", { recentPost: this.state.recentPost })
@@ -71,6 +71,7 @@ export default class Dashboard extends Component {
     const recentPost = this.state.recentPost;
     const author = this.state.authorID;
     let recentPosts = recentPost.map(data => data.blog);
+
     // console.log("State: ", this.state);
     // console.log("dashboard: ", this.state.user);
     // console.log("props: ", this.props.user);

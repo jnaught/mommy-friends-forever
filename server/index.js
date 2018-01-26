@@ -43,12 +43,12 @@ passport.use(
       scope: "openid profile"
     },
     (accessToken, refreshToken, extraParams, profile, done) => {
-      console.log("authStrat: ", profile);
+      // console.log("authStrat: ", profile);
       app
         .get("db")
         .getUser(profile.id)
         .then(response => {
-          console.log(response);
+          // console.log(response);
           if (!response[0]) {
             console.log("createUSer: ");
             app
@@ -64,7 +64,7 @@ passport.use(
                 return done(null, profile);
               });
           } else {
-            console.log('existing"');
+            // console.log('existing"');
             return done(null, response[0]);
           }
         });
@@ -92,7 +92,7 @@ app.get("/api/me", (req, res, next) => {
 app.post("/api/createUser/", controller.createUser);
 app.get("/api/getUser/", controller.getUser);
 // app.get("/api/getUser/:uid", controller.getUser);
-app.get("/api/pic/:uid", controller.getUserPic);
+app.get("/api/pic/", controller.getUserPic);
 app.put("/api/updateUser/", controller.updateUser);
 app.delete("/api/deleteUser/:id", controller.deleteUser);
 
@@ -101,6 +101,8 @@ app.delete("/api/deleteUser/:id", controller.deleteUser);
 app.post("/api/createPost/", controller.createPost);
 app.get("/api/getPost/", controller.getPost);
 app.get("/api/allPosts/", controller.getAllPost);
+
+app.get("/api/recentPosts/", controller.getRecentPost);
 app.delete("/api/deletePost/:id", controller.deletePost);
 app.get("/api/authorID/", controller.getAuthorID);
 
