@@ -109,6 +109,11 @@ app.get("/api/authorID/", controller.getAuthorID);
 // app.post("/api/profile/", controller.updateProfile);
 // app.get("/api/getProfile/", controller.getProfile);
 
+const path = require("path");
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../build/index.html"));
+});
+
 app.listen(process.env.PORT || 3001, () => {
   console.log(`App listening on port ${process.env.PORT || 3001}!`);
 });
