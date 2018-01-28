@@ -11,12 +11,13 @@ const controller = require("./controller");
 
 const app = express();
 
+app.use(express.static(`${__dirname}/../build`));
+
 massive(process.env.CONNECTION_STRING)
   .then(db => {
     app.set("db", db);
   })
   .catch(console.log);
-app.use(express.static(`${__dirname}/../build`));
 app.use(json());
 app.use(cors());
 app.use(
