@@ -16,7 +16,7 @@ massive(process.env.CONNECTION_STRING)
     app.set("db", db);
   })
   .catch(console.log);
-// app.use(express.static(`${__dirname}/../build`));
+app.use(express.static(`${__dirname}/../build`));
 app.use(json());
 app.use(cors());
 app.use(
@@ -112,10 +112,10 @@ app.get("/api/authorID/", controller.getAuthorID);
 // app.post("/api/profile/", controller.updateProfile);
 // app.get("/api/getProfile/", controller.getProfile);
 
-// const path = require("path");
-// app.get("*", (req, res) => {
-//   res.sendFile(path.join(__dirname, "../build/index.html"));
-// });
+const path = require("path");
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../build/index.html"));
+});
 
 app.listen(process.env.PORT || 3001, () => {
   console.log(`App listening on port ${process.env.PORT || 3001}!`);
