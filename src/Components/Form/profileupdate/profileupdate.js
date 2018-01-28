@@ -6,25 +6,32 @@ export default class profileupdate extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      firstname: "",
-      lastname: "",
       email: "",
-      displayname: ""
+      displayname: "",
+      user_id: ""
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+  componentDidMount() {
+    axios
+      .get("/api/me")
+      .then(response => {
+        this.setState({
+          user_id: response.data.user_id
+        });
+      })
 
+      .catch(console.log);
+  }
   handleChange(event) {
     this.setState({ firstname: event.target.value });
     event.preventDefault();
   }
 
   handleSubmit(event) {
-    const { age, displayname } = this.state;
-
-    axios.post("/api/user", { age, displayname }).then(res => console.log(res));
+    axios.put("/api/updateEmail", this.state).then(res => console.log(res));
   }
 
   render() {

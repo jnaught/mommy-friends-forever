@@ -10,12 +10,25 @@ module.exports = {
   },
   getUser: (req, res, next) => {
     const db = req.app.get("db");
-    const { params } = req;
+    const { params } = req.body;
+    console.log(req.body);
+
     db
       .getUser(req.params.id)
       .then(user => {
         res.status(200).send(user);
       })
+      .catch(console.log);
+  },
+  updateEmail: (req, res, next) => {
+    console.log("updateEmail HIT!");
+    const db = req.app.get("db");
+    console.log(req.body);
+    const { email, displayname, user_id } = req.body;
+    console.log("updateEmail: ", email, displayname, user_id);
+    db
+      .updateEmail(email, displayname, user_id)
+      .then(() => res.status(200).send())
       .catch(console.log);
   },
   updateUser: (req, res, next) => {

@@ -47,9 +47,9 @@ export default class Header extends Component {
             {""}
             <Link to="/Profile">PROFILE</Link>
             {""}
-            <Link to="/UserPosts">MY POSTS</Link>
+            <Link to="/UserPosts">MY POST</Link>
             {""}
-            <Link to="/allPosts">EVENTS</Link>
+            <Link to="/allPosts">EVENT</Link>
           </div>
         </div>
       </div>

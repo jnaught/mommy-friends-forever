@@ -16,7 +16,7 @@ massive(process.env.CONNECTION_STRING)
     app.set("db", db);
   })
   .catch(console.log);
-app.use(express.static(`${__dirname}/../build`));
+// app.use(express.static(`${__dirname}/../build`));
 app.use(json());
 app.use(cors());
 app.use(
@@ -78,8 +78,8 @@ passport.deserializeUser((user, done) => done(null, user));
 app.get(
   "/login",
   passport.authenticate("auth0", {
-    successRedirect: "/Home",
-    failureRedirect: "/login"
+    successRedirect: "http://localhost:3000/Home",
+    failureRedirect: "http://localhost:3000/login"
   })
 );
 
@@ -94,6 +94,7 @@ app.get("/api/getUser/", controller.getUser);
 // app.get("/api/getUser/:uid", controller.getUser);
 app.get("/api/pic/", controller.getUserPic);
 app.put("/api/updateUser/", controller.updateUser);
+app.put("/api/updateEmail/", controller.updateEmail);
 app.delete("/api/deleteUser/:id", controller.deleteUser);
 
 // ------------------------ [post]---------------------
@@ -111,10 +112,10 @@ app.get("/api/authorID/", controller.getAuthorID);
 // app.post("/api/profile/", controller.updateProfile);
 // app.get("/api/getProfile/", controller.getProfile);
 
-const path = require("path");
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../build/index.html"));
-});
+// const path = require("path");
+// app.get("*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "../build/index.html"));
+// });
 
 app.listen(process.env.PORT || 3001, () => {
   console.log(`App listening on port ${process.env.PORT || 3001}!`);
