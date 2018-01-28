@@ -1,0 +1,17 @@
+.myPost-container {
+  overflow: scroll;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 4px 4px 6px 7px #e807789d;
+  height: 70vh;
+  width: 55vw;
+}
+.myPost {
+  padding: 40px;
+  border: 0.5px solid black;
+  height: auto;
+  width: 50vw;
+}

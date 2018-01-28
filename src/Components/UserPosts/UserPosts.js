@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Header from "../Header/Header";
+import "./UserPosts.css";
 
 export default class UserPosts extends Component {
   constructor(props) {
@@ -36,13 +37,15 @@ export default class UserPosts extends Component {
           <Header />{" "}
         </div>
         <div> User Posts</div>
-        <div> {usersPosts[0]} </div>
-        <div> {usersPosts[1]} </div>
-        <div> {usersPosts[2]} </div>
-        <div> {usersPosts[3]} </div>
-        <div> {usersPosts[4]} </div>
-        <div> {usersPosts[5]} </div>
-        <div> {usersPosts[6]} </div>
+        <div className="myPost-container">
+          <div className="myPost"> {usersPosts[0]} </div>
+          <div className="myPost"> {usersPosts[1]} </div>
+          <div className="myPost"> {usersPosts[2]} </div>
+          <div className="myPost"> {usersPosts[3]} </div>
+          <div className="myPost"> {usersPosts[4]} </div>
+          <div className="myPost"> {usersPosts[5]} </div>
+          <div className="myPost"> {usersPosts[6]} </div>
+        </div>
       </div>
     );
   }

@@ -21,7 +21,7 @@ export default class Post extends Component {
     // event.preventDefault();  to stop full page refresh
     const { putpost } = this.state;
 
-    axios.post("/api/post", { putpost }).then(res => console.log(res));
+    axios.post("/api/createPost", { putpost }).then(res => console.log(res));
   }
   render() {
     return (

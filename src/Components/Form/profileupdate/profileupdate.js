@@ -8,7 +8,7 @@ export default class profileupdate extends Component {
     this.state = {
       firstname: "",
       lastname: "",
-      age: null,
+      email: "",
       displayname: ""
     };
 
@@ -22,11 +22,9 @@ export default class profileupdate extends Component {
   }
 
   handleSubmit(event) {
-    const { firstname, lastname, age, displayname } = this.state;
+    const { age, displayname } = this.state;
 
-    axios
-      .post("/api/user", { firstname, lastname, age, displayname })
-      .then(res => console.log(res));
+    axios.post("/api/user", { age, displayname }).then(res => console.log(res));
   }
 
   render() {
@@ -34,7 +32,7 @@ export default class profileupdate extends Component {
       <div>
         <form onSubmit={this.handleSubmit}>
           <div className="profileupdate-container">
-            {" "}
+            {/* {" "}
             <label>
               First Name:
               <input
@@ -50,13 +48,13 @@ export default class profileupdate extends Component {
                 lastname={this.state.lastname}
                 onChange={e => this.setState({ lastname: e.target.value })}
               />
-            </label>
+            </label> */}
             <label>
-              Age:
+              Email:
               <input
                 type="text"
-                age={this.state.age}
-                onChange={e => this.setState({ age: e.target.value })}
+                email={this.state.email}
+                onChange={e => this.setState({ email: e.target.value })}
               />
             </label>
             <label>

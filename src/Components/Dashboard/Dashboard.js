@@ -35,7 +35,7 @@ export default class Dashboard extends Component {
     axios
       .get("/api/me")
       .then(response => {
-        this.setState({ user: response.data });
+        this.setState({ user: response });
       })
       .catch(console.log);
     // --------------------------- [get picture= sets state for picture] ----------------------
