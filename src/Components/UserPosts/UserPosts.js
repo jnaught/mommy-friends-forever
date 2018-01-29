@@ -16,6 +16,7 @@ export default class UserPosts extends Component {
       picture: "",
       displayname: ""
     };
+    this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
@@ -39,12 +40,8 @@ export default class UserPosts extends Component {
       })
       .catch(console.log);
   }
-  // getPost() {
-  //   axios
-  //     .get("/api/getPost", { userPost: this.state.userPost })
-  //     .then(response => console.log(response))
-  //     .catch(console.log);
-  // }
+  handleClick = () => alert(" POST DELETED");
+
   render() {
     console.log("state userpost.js: ", this.state);
     const userPost = this.state.userPost;
@@ -75,7 +72,7 @@ export default class UserPosts extends Component {
                 {usersPosts[0]}
                 <div className="user-actions">
                   <img src={edit} alt="" />
-                  <img src={remove} alt="" />
+                  <img onClick={this.handleClick} src={remove} alt="" />
                 </div>
               </div>
               <div>
