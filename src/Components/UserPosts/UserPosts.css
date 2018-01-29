@@ -4,14 +4,65 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
   box-shadow: 4px 4px 6px 7px #e807789d;
-  height: 70vh;
+  height: 80vh;
   width: 55vw;
 }
+.post-title {
+  padding: 20px;
+  height: 40px;
+  width: 14vw;
+}
+.myPostList-container-top {
+  margin-right: 20px;
+  display: flex;
+  background: rgba(214, 214, 214, 0.507);
+  height: 60vh;
+  width: 20vw;
+  border-radius: 5px;
+}
+.myPostList-container-top img {
+  height: 40px;
+  width: auto;
+}
+.myPostList-container-btm {
+  margin-left: 20px;
+  display: flex;
+  background: rgba(214, 214, 214, 0.507);
+  height: 60vh;
+  width: 20vw;
+  border-radius: 5px;
+}
 .myPost {
-  padding: 40px;
-  border: 0.5px solid black;
-  height: auto;
-  width: 50vw;
+  padding-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  border: solid rgba(214, 214, 214, 0.699) 1px;
+}
+.mypost {
+  width: 18vw;
+  display: flex;
+  justify-content: center;
+}
+.myPostIntro-container {
+  padding: 20px;
+  height: 85vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  background: rgba(231, 231, 231, 0.335);
+}
+.overall {
+  display: flex;
+  flex-direction: row;
+}
+.user-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+.user-actions img {
+  height: 20px;
+  width: auto;
 }

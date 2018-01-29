@@ -2,16 +2,34 @@
   display: flex;
   flex-direction: column;
   margin: 0 auto;
-  display: flex;
   justify-content: center;
   box-shadow: 4px 4px 6px 7px #e807789d;
-  height: 55vh;
+  height: 50vh;
   width: 35vw;
+  border-radius: 5px;
 }
 .profileupdate-button {
   height: 55px;
   width: 325px;
   display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.update-title {
+  border-radius: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #e80776;
+  height: 30px;
+  width: 360px;
+  font-family: cursive;
+  font-size: 25px;
+}
+.update-container {
+  width: 800px;
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }

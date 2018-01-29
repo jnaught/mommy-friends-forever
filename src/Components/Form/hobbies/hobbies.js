@@ -80,7 +80,7 @@ export default class Hobbies extends Component {
               </label>
               <div>
                 <select value={this.state.area} onChange={this.onChange.area}>
-                  <option value="">Select Area</option>
+                  <option value="Select Area">Select Area</option>
                   <option value="Roanoke">Roanoke</option>
                   <option value="Trophy Club">Trophy Club</option>
                   <option value="GrapeVine">GrapeVine</option>
@@ -96,7 +96,7 @@ export default class Hobbies extends Component {
                   value={this.state.children}
                   onChange={this.onChange.children}
                 >
-                  <option value="">Children Age Range</option>
+                  <option value="Children Age Range">Children Age Range</option>
                   <option value="infant - 3yrs">infant - 3yrs</option>
                   <option value="4-6">4-6</option>
                   <option value="7-9">7-9</option>
@@ -112,7 +112,7 @@ export default class Hobbies extends Component {
                 value={this.state.playdate}
                 onChange={this.onChange.playdate}
               >
-                <option value="">Play Date</option>
+                <option value="Play Date">Play Date</option>
                 <option value="yes">Yes</option>
                 <option value="no">No</option>
               </select>
@@ -125,7 +125,7 @@ export default class Hobbies extends Component {
                 value={this.state.value}
                 onChange={this.onChange.mommydate}
               >
-                <option value="">Mommy Date</option>
+                <option value="Mommy Date">Mommy Date</option>
                 <option value="yes">Yes</option>
                 <option value="no">No</option>
               </select>
@@ -135,7 +135,7 @@ export default class Hobbies extends Component {
             <div className="list">
               <label>favorite La Croix flavor:{this.state.flavor} </label>
               <select value={this.state.flavor} onChange={this.onChange.flavor}>
-                <option value="">Favorite Flavor</option>
+                <option value="Favorite Flavor">Favorite Flavor</option>
                 <option value="grapefruit">Grapefruit</option>
                 <option value="lime">Lime</option>
                 <option value="coconut">Coconut</option>

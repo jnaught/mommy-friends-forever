@@ -1,13 +1,11 @@
 import React, { Component } from "react";
 import axios from "axios";
-// import { Link } from "react-router-dom";
-// import { connect } from "react-redux";
-// import { retrieveUser } from "../../ducks/user";
 import "./Dashboard.css";
 import Post from "../Post/Post";
-import profileicon1 from "../images/imageicon_1.png";
-import profileicon2 from "../images/imageicon_2.png";
-// import Header from "../Header/Header";
+import edit from "../images/edit.svg";
+import remove from "../images/trashbin.svg";
+import twittericon from "../images/social_twitter.svg";
+import facebookicon from "../images/social_facebook.svg";
 
 export default class Dashboard extends Component {
   constructor(props) {
@@ -16,9 +14,15 @@ export default class Dashboard extends Component {
     this.state = {
       recentPost: [],
       userPost: [],
-      user: "",
+      user_id: "",
       picture: "",
-      authorID: ""
+      authorID0: "",
+      authorID1: "",
+      authorID2: "",
+      authorID3: "",
+      authorID4: "",
+      authorDisplayName: "",
+      displayname: ""
     };
   }
 
@@ -27,45 +31,30 @@ export default class Dashboard extends Component {
     axios
       .get("/api/recentPosts")
       .then(response => {
-        // console.log("Blogs: ", response);
-        this.setState({ recentPost: response.data });
+        console.log("Blogs: ", response);
+        this.setState({
+          recentPost: response.data,
+          authorID0: response.data[0],
+          authorID1: response.data[1],
+          authorID2: response.data[2],
+          authorID3: response.data[3],
+          authorID4: response.data[4]
+        });
       })
       .catch(console.log);
     // --------------------------- [get user id= set state for user] ----------------------
     axios
       .get("/api/me")
       .then(response => {
-        this.setState({ user: response });
-      })
-      .catch(console.log);
-    // --------------------------- [get picture= sets state for picture] ----------------------
-
-    axios
-
-      .get("/api/pic/" + this.state.user)
-      .then(response => {
-        console.log("pic: ", response);
-        this.setState({ picture: response.data });
-      })
-      .catch(console.log);
-
-    // --------------------------- [get authorID= sets state for authorID] ----------------------
-
-    axios
-      .get("/api/authorID/")
-      .then(response => {
-        // console.log("authorID: ", response);
-        this.setState({ authorID: response.data[0] });
+        console.log("me response: ", response);
+        this.setState({
+          user: response.data.user_id,
+          picture: response.data.picture,
+          displayname: response.data.displayname
+        });
       })
       .catch(console.log);
   }
-
-  // getUserPic() {
-  //   axios
-  //     .get("api/pic", { picture: this.state.picture })
-  //     .then(response => console.log(response))
-  //     .catch(console.log);
-  // }
   getPost() {
     axios
       .get("/api/recentPosts", { recentPost: this.state.recentPost })
@@ -74,24 +63,19 @@ export default class Dashboard extends Component {
   }
 
   render() {
-    const profilepic = this.state.picture;
     const recentPost = this.state.recentPost;
-    const author = this.state.authorID;
     let recentPosts = recentPost.map(data => data.blog);
 
-    // console.log("State: ", this.state);
-    console.log("user_info: ", this.state.user);
-    // console.log("props: ", this.props.user);
-    // console.log("author id: ", this.state.authorID);
+    console.log("State: ", this.state);
     return (
       <div className="dashboard-container">
         <div className="dashboard-intro">
-          <p> Welcome to your Dashboard</p>
+          <p>Dashboard</p>
           <div className="list-container">
             <div>
               {" "}
-              <img src={profileicon1} alt="" />
-              {profilepic.firstname}
+              <img src={this.state.picture} alt="" />
+              {this.state.displayname}
             </div>
           </div>
         </div>
@@ -105,47 +89,68 @@ export default class Dashboard extends Component {
                 <div className="post-list">
                   <div>
                     {" "}
-                    <img src={profileicon1} alt="" />
-                    <div className="authorID">{author.firstname}</div>
+                    <img src={this.state.authorID4.picture} alt="" />
+                    <div className="authorID">
+                      {this.state.authorID4.displayname}
+                    </div>
                   </div>
-                  <div> {recentPosts[4]}</div>
+                  <div className="postlist-text"> {recentPosts[4]}</div>
                 </div>
                 <div className="post-list">
                   <div>
                     {" "}
-                    <img src={profileicon2} alt="" />
-                    <div className="authorID">{author.firstname}</div>
+                    <img src={this.state.authorID3.picture} alt="" />
+                    <div className="authorID">
+                      {this.state.authorID3.displayname}
+                    </div>
                   </div>
-                  <div> {recentPosts[3]}</div>
+                  <div className="postlist-text"> {recentPosts[3]}</div>
                 </div>
                 <div className="post-list">
                   <div>
                     {" "}
-                    <img src={profileicon1} alt="" />
-                    <div className="authorID">{author.firstname}</div>
+                    <img src={this.state.authorID2.picture} alt="" />
+                    <div className="authorID">
+                      {this.state.authorID2.displayname}
+                    </div>
                   </div>
-                  <div> {recentPosts[2]}</div>
+                  <div className="postlist-text"> {recentPosts[2]}</div>
                 </div>
                 <div className="post-list">
                   <div>
                     {" "}
-                    <img src={profileicon2} alt="" />
-                    <div className="authorID">{author.firstname}</div>
+                    <img src={this.state.authorID1.picture} alt="" />
+                    <div className="authorID">
+                      {this.state.authorID1.displayname}
+                    </div>
                   </div>
-                  <div> {recentPosts[1]}</div>
+                  <div className="postlist-text"> {recentPosts[1]}</div>
                 </div>
                 <div className="post-list">
                   <div>
                     {" "}
-                    <img src={profileicon1} alt="" />
-                    <div className="authorID">{author.firstname}</div>
+                    <img src={this.state.authorID0.picture} alt="" />
+                    <div className="authorID">
+                      {this.state.authorID0.displayname}
+                    </div>
                   </div>
-                  <div> {recentPosts[0]}</div>
+                  <div className="postlist-text"> {recentPosts[0]}</div>
                 </div>
               </div>
             </div>
           </div>
           <Post />
+        </div>
+        {/* -------------------------[ right side social media links]----------------------------- */}
+        <div className="dashboard-outro">
+          <p>Social Media</p>
+          <div className="social-container">
+            <div className="socialmediaicons">
+              <img className="social-logo" src={twittericon} alt="" />
+
+              <img className="social-logo" src={facebookicon} alt="" />
+            </div>
+          </div>
         </div>
       </div>
     );

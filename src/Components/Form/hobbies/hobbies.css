@@ -13,17 +13,19 @@
   justify-content: space-between;
 }
 .hobbies-container {
+  border-radius: 5px;
   padding: 40px;
   box-shadow: 4px 4px 6px 7px #e807789d;
 }
 
 .hobby-title {
+  border-radius: 500px;
   display: flex;
   align-items: center;
   justify-content: center;
   background: #e80776;
   height: 30px;
-  width: 345px;
+  width: 360px;
   font-family: cursive;
   font-size: 25px;
 }

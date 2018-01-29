@@ -36,26 +36,10 @@ export default class profileupdate extends Component {
 
   render() {
     return (
-      <div>
+      <div className="update-container">
         <form onSubmit={this.handleSubmit}>
+          <div className="update-title"> email and displayname preference</div>
           <div className="profileupdate-container">
-            {/* {" "}
-            <label>
-              First Name:
-              <input
-                type="text"
-                firstname={this.state.firstname}
-                onChange={e => this.setState({ firstname: e.target.value })}
-              />
-            </label>
-            <label>
-              Last Name:
-              <input
-                type="text"
-                lastname={this.state.lastname}
-                onChange={e => this.setState({ lastname: e.target.value })}
-              />
-            </label> */}
             <label>
               Email:
               <input

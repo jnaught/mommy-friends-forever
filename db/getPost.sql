@@ -1,3 +1,3 @@
-SELECT pid, blog
-FROM post JOIN users ON users.user_id = post.user_id
+SELECT blog
+FROM post
 ORDER BY pid DESC

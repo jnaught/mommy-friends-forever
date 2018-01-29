@@ -1,11 +1,19 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins");
 .dashboard-container {
   padding: 40px;
-  height: 60vh;
+  height: 78vh;
   display: flex;
   justify-content: space-around;
+  background: rgba(231, 231, 231, 0.335);
 }
 .dashboard-intro {
-  width: 40vw;
+  padding-right: 20px;
+  width: 50vw;
+  height: 10vh;
+}
+.dashboard-outro {
+  padding-left: 22px;
+  width: 50vw;
   height: 10vh;
 }
 .dashboard-title {
@@ -20,9 +28,10 @@
 }
 
 .post-feed {
-  height: 60vh;
+  height: 70vh;
   width: 60vw;
   background: white;
+  border-radius: 5px;
 }
 .recent-post {
   overflow: scroll;
@@ -35,13 +44,24 @@
 }
 .list-container {
   display: flex;
-  margin-left: 20px;
-  background: rgba(128, 128, 128, 0.639);
-  height: 40vh;
-  width: 15vw;
+  background: rgba(214, 214, 214, 0.507);
+  height: 60vh;
+  width: 20vw;
+  border-radius: 5px;
 }
 .list-container img {
   height: 40px;
+  width: auto;
+}
+.social-container {
+  display: flex;
+  background: rgba(214, 214, 214, 0.507);
+  height: 60vh;
+  width: 20vw;
+  border-radius: 5px;
+}
+.social-container img {
+  height: 60px;
   width: auto;
 }
 ul {
@@ -58,14 +78,16 @@ ul {
   justify-content: center;
 }
 .post-list {
+  padding-left: 5px;
   display: flex;
-
+  border-radius: 5px;
   font-size: 20px;
+  font-family: "Poppins", sans-serif;
   color: #3d19ff;
   border: solid rgba(0, 0, 0, 0.116);
   height: auto;
   width: 50vw;
-  background: white;
+  /* background: white; */
 }
 .post-list img {
   border: 1px solid blue;
@@ -75,4 +97,13 @@ ul {
 .authorID {
   font-family: cursive;
   font-size: 10px;
+}
+.postlist-text {
+  padding-left: 35px;
+}
+.socialmediaicons {
+  display: flex;
+  width: 45vw;
+  align-content: center;
+  flex-direction: column;
 }

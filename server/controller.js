@@ -67,6 +67,7 @@ module.exports = {
       .catch(console.log);
   },
   getPost: (req, res, next) => {
+    console.log("GetPost HIT");
     const db = req.app.get("db");
     const { params } = req;
     console.log(req.body);

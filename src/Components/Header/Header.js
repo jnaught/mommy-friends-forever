@@ -38,9 +38,7 @@ export default class Header extends Component {
               src={logo}
               alt="Mommy Friends Forever"
             />
-            {/* {this.props.user.displayname} */}
           </div>
-          {/* <div>MOMMY FRIENDS FOREVER!</div> */}
 
           <div className="nav-bar">
             <Link to="/Home">DASHBOARD </Link>

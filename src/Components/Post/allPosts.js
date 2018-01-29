@@ -8,7 +8,10 @@ export default class allPosts extends Component {
     super(props);
     this.state = {
       allPosts: [],
-      newPosts: []
+      newPosts: [],
+      user: "",
+      picture: "",
+      displayname: ""
     };
   }
 
@@ -18,6 +21,18 @@ export default class allPosts extends Component {
       .then(response => {
         console.log("AllPosts: ", response);
         this.setState({ allPosts: response.data });
+      })
+      .catch(console.log);
+
+    axios
+      .get("/api/me")
+      .then(response => {
+        console.log("me response: ", response);
+        this.setState({
+          user: response.data.user_id,
+          picture: response.data.picture,
+          displayname: response.data.displayname
+        });
       })
       .catch(console.log);
   }
@@ -33,10 +48,19 @@ export default class allPosts extends Component {
     let Posts = allPost.map(data => data.blog);
 
     return (
-      <div className="main">
+      <div>
         <Header />
-        <div>
-          <div className="title-container"> ALL POSTS HERE </div>
+        <div className="main">
+          <div className="allpost-intro">
+            <p>Events</p>
+            <div className="allpost-container">
+              <div>
+                {" "}
+                <img src={this.state.picture} alt="" />
+                {this.state.displayname}
+              </div>
+            </div>
+          </div>
           <div className="forum-container">
             <div className="post"> {Posts[15]}</div>
             <div className="post"> {Posts[14]} </div>

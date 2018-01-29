@@ -2,4 +2,5 @@
   padding: 60px;
   display: flex;
   flex-direction: row;
+  background: rgba(231, 231, 231, 0.335);
 }
