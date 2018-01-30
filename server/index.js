@@ -11,7 +11,7 @@ const controller = require("./controller");
 
 const app = express();
 
-app.use(express.static(`${__dirname}/../build`));
+// app.use(express.static(`${__dirname}/../build`));
 
 massive(process.env.CONNECTION_STRING)
   .then(db => {
@@ -113,10 +113,10 @@ app.get("/api/authorID/", controller.getAuthorID);
 // app.post("/api/profile/", controller.updateProfile);
 // app.get("/api/getProfile/", controller.getProfile);
 
-const path = require("path");
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../build/index.html"));
-});
+// const path = require("path");
+// app.get("*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "../build/index.html"));
+// });
 
 app.listen(process.env.PORT || 3001, () => {
   console.log(`App listening on port ${process.env.PORT || 3001}!`);
